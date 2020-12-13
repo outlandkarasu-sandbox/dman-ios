@@ -1,0 +1,8 @@
+{
+	"authors": [
+		"outland.karasu"
+	],
+	"description": "A minimal D iOS application.",
+	"license": "BSL-1.0",
+	"name": "dman-ios"
+}

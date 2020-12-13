@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/dman-ios
+dman-ios.so
+dman-ios.dylib
+dman-ios.dll
+dman-ios.a
+dman-ios.lib
+dman-ios-test-*
+*.exe
+*.o
+*.obj
+*.lst
