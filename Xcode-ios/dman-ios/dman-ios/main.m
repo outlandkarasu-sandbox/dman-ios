@@ -1,10 +1,4 @@
-//
-//  main.m
-//  dman-ios
-//
-//  Created by 中村暁 on 2020/12/14.
-//
-
+/*
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
@@ -16,3 +10,4 @@ int main(int argc, char * argv[]) {
     }
     return UIApplicationMain(argc, argv, nil, appDelegateClassName);
 }
+*/
