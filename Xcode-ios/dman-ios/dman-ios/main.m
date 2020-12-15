@@ -1,13 +1,9 @@
-/*
-#import <UIKit/UIKit.h>
-#import "AppDelegate.h"
+// これが大事
+#include <SDL/SDL.h>
 
-int main(int argc, char * argv[]) {
-    NSString * appDelegateClassName;
-    @autoreleasepool {
-        // Setup code that might create autoreleased objects goes here.
-        appDelegateClassName = NSStringFromClass([AppDelegate class]);
-    }
-    return UIApplicationMain(argc, argv, nil, appDelegateClassName);
+// D言語の開始関数
+int dmanStartup(int argc, char **argv);
+
+int main(int argc, char **argv) {
+    return dmanStartup(argc, argv);
 }
-*/
