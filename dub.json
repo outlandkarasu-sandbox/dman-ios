@@ -2,8 +2,15 @@
 	"authors": [
 		"outland.karasu"
 	],
+	"dependencies": {
+		"bindbc-sdl": "~>0.19.2"
+	},
 	"description": "A minimal D iOS application.",
 	"license": "BSL-1.0",
 	"name": "dman-ios",
-	"targetType": "library"
+	"targetType": "staticLibrary",
+	"versions": [
+		"BindSDL_Static",
+		"SDL_2012"
+	]
 }
