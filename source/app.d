@@ -1,9 +1,34 @@
+import core.attribute : selector;
 import std.exception : basicExceptionCtors;
 import std.stdio;
 import std.string : fromStringz;
 import std.traits : isPointer;
 
 import bindbc.sdl;
+
+/**
+NSObjectの宣言
+*/
+extern(Objective-C)
+extern class NSObject
+{
+    void release() @selector("release");
+}
+
+/**
+NSDataの宣言
+*/
+extern(Objective-C)
+extern class NSData : NSObject
+{
+    ulong length() @selector("length");
+    void getBytes(void* buffer, ulong length) @selector("getBytes:length:");
+}
+
+/**
+main.mで定義した画像読み込み関数の宣言
+*/
+extern(C) NSData getImagePNGRepresentation(const(char)* name, ulong nameLength);
 
 /**
 Frames per second.
@@ -102,6 +127,10 @@ extern(C) int dmanMain(char[][] args)
     assumeSDLSuccess(SDL_Init(SDL_INIT_VIDEO));
     scope(exit) SDL_Quit();
 
+    // SDL_image初期化(PNG使用)
+    assumeSDLSuccess(IMG_Init(IMG_INIT_PNG) == IMG_INIT_PNG);
+    scope(exit) IMG_Quit();
+
     writeln("Hello, D iOS SDL World!");
 
     // ウィンドウとレンダラー生成
@@ -114,6 +143,30 @@ extern(C) int dmanMain(char[][] args)
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
     }
+
+    // 画像をSDLのSurfaceとして読み込む。
+    auto imageSurface = ({
+        // 画像アセットの読み込み
+        auto dmanImage = getImagePNGRepresentation("dman", 4);
+        scope(exit) dmanImage.release();
+
+        // 画像のバイトデータを取り出す。
+        scope imageBuffer = new void[dmanImage.length];
+        dmanImage.getBytes(imageBuffer.ptr, imageBuffer.length);
+
+        // メモリリーダーを初期化
+        auto imageReader = assumeSDLSuccess(
+            SDL_RWFromMem(imageBuffer.ptr, cast(int) imageBuffer.length));
+        scope(exit) SDL_RWclose(imageReader);
+
+        // SDL_imageで読み込み
+        return assumeSDLSuccess(IMG_LoadPNG_RW(imageReader));
+    })();
+    scope(exit) SDL_FreeSurface(imageSurface);
+
+    // テクスチャ生成
+    auto texture = assumeSDLSuccess(SDL_CreateTextureFromSurface(renderer, imageSurface));
+    scope(exit) SDL_DestroyTexture(texture);
 
     // 1フレーム当たりのパフォーマンスカウンタ値計算。FPS制御のために使用する。
     immutable performanceFrequency = SDL_GetPerformanceFrequency();
@@ -139,6 +192,9 @@ extern(C) int dmanMain(char[][] args)
         // 画面クリア
         SDL_SetRenderDrawColor(renderer, 0xFF, 0x00, 0x00, 0xFF);
         SDL_RenderClear(renderer);
+
+        // 画像描画
+        SDL_RenderCopy(renderer, texture, null, null);
         SDL_RenderPresent(renderer);
 
         // 次フレームまで待機
