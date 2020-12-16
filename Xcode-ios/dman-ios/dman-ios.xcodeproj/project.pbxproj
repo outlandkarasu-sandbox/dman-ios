@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A55EEF502586DF6300E4AA27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A55EEF4F2586DF6300E4AA27 /* Assets.xcassets */; };
 		A55EEF562586DF6300E4AA27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A55EEF552586DF6300E4AA27 /* main.m */; };
+		A56618C1258A2E7C00CB2C47 /* libBindBC_SDL-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A56618C0258A2E7C00CB2C47 /* libBindBC_SDL-ios.a */; };
 		A5B30EB42588D96100D51D6D /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B30EB32588D96100D51D6D /* libSDL2.a */; };
 		A5B30EB62588DA2B00D51D6D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B30EB52588DA2B00D51D6D /* AudioToolbox.framework */; };
 		A5B30EB82588DA3600D51D6D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B30EB72588DA3600D51D6D /* AVFoundation.framework */; };
@@ -35,6 +36,7 @@
 		A55EEF4F2586DF6300E4AA27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A55EEF542586DF6300E4AA27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A55EEF552586DF6300E4AA27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A56618C0258A2E7C00CB2C47 /* libBindBC_SDL-ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libBindBC_SDL-ios.a"; path = "../Libraries/libBindBC_SDL-ios.a"; sourceTree = "<group>"; };
 		A5B30EB32588D96100D51D6D /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../Libraries/libSDL2.a; sourceTree = "<group>"; };
 		A5B30EB52588DA2B00D51D6D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A5B30EB72588DA3600D51D6D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -62,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A56618C1258A2E7C00CB2C47 /* libBindBC_SDL-ios.a in Frameworks */,
 				A5B30EC02588DA5B00D51D6D /* CoreServices.framework in Frameworks */,
 				A5B30ED62588DDC900D51D6D /* CoreImage.framework in Frameworks */,
 				A5B30ED42588DDA600D51D6D /* CoreAudio.framework in Frameworks */,
@@ -117,6 +120,7 @@
 		A5E6C6DA258797C300F3EDDD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A56618C0258A2E7C00CB2C47 /* libBindBC_SDL-ios.a */,
 				A5B30ED52588DDC900D51D6D /* CoreImage.framework */,
 				A5B30ED32588DDA600D51D6D /* CoreAudio.framework */,
 				A5B30ED12588DD9300D51D6D /* MobileCoreServices.framework */,

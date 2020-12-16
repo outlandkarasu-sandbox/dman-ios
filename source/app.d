@@ -6,6 +6,11 @@ import std.traits : isPointer;
 import bindbc.sdl;
 
 /**
+Frames per second.
+*/
+enum FPS = 60;
+
+/**
 SDLエラー時の例外
 */
 class SDLException : Exception
@@ -98,6 +103,55 @@ extern(C) int dmanMain(char[][] args)
     scope(exit) SDL_Quit();
 
     writeln("Hello, D iOS SDL World!");
+
+    // ウィンドウとレンダラー生成
+    SDL_Window* window;
+    SDL_Renderer* renderer;
+    assumeSDLSuccess(SDL_CreateWindowAndRenderer(
+        320, 480, SDL_WINDOW_FULLSCREEN, &window, &renderer));
+    scope(exit)
+    {
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(window);
+    }
+
+    // 1フレーム当たりのパフォーマンスカウンタ値計算。FPS制御のために使用する。
+    immutable performanceFrequency = SDL_GetPerformanceFrequency();
+    immutable countPerFrame = performanceFrequency / FPS;
+
+    // メインループ
+    mainLoop: for (;;)
+    {
+        immutable frameStart = SDL_GetPerformanceCounter();
+
+        // イベントがキューにある限り処理を行う。
+        for (SDL_Event e; SDL_PollEvent(&e);)
+        {
+            switch(e.type)
+            {
+            case SDL_QUIT:
+                break mainLoop;
+            default:
+                break;
+            }
+        }
+
+        // 画面クリア
+        SDL_SetRenderDrawColor(renderer, 0xFF, 0x00, 0x00, 0xFF);
+        SDL_RenderClear(renderer);
+        SDL_RenderPresent(renderer);
+
+        // 次フレームまで待機
+        immutable drawDelay = SDL_GetPerformanceCounter() - frameStart;
+        if(countPerFrame < drawDelay)
+        {
+            SDL_Delay(0);
+        }
+        else
+        {
+            SDL_Delay(cast(uint)((countPerFrame - drawDelay) * 1000 / performanceFrequency));
+        }
+    }
 
     return 0;
 }
