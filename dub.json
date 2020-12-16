@@ -11,6 +11,7 @@
 	"targetType": "staticLibrary",
 	"versions": [
 		"BindSDL_Static",
-		"SDL_2012"
+		"SDL_2012",
+		"SDL_Image"
 	]
 }
