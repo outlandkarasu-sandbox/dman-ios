@@ -1,4 +1,63 @@
+import std.exception : basicExceptionCtors;
 import std.stdio;
+import std.string : fromStringz;
+import std.traits : isPointer;
+
+import bindbc.sdl;
+
+/**
+SDLエラー時の例外
+*/
+class SDLException : Exception
+{
+    mixin basicExceptionCtors;
+
+    /**
+    SDL_GetError内容から生成する。
+
+    Params:
+        file = ファイル名
+        line = 行番号
+    Returns:
+        SDL_GetError内容から生成したSDLException
+    */
+    static SDLException fromError(string file = __FILE__, size_t line = __LINE__) nothrow
+    {
+        return new SDLException(fromStringz(SDL_GetError()).idup, file, line);
+    }
+}
+
+/**
+SDLエラー時に例外をスローする。
+
+Params:
+    T = 式の型
+    expr = チェック対象の式
+    file = ファイル名
+    line = 行番号
+Throws:
+    エラー発生時にSDLExceptionをスローする。
+*/
+T assumeSDLSuccess(T)(lazy T expr, string file = __FILE__, size_t line = __LINE__) if (is(T == int))
+{
+    auto result = expr;
+    if (result != 0)
+    {
+        throw SDLException.fromError(file, line);
+    }
+    return result;
+}
+
+/// ditto
+T assumeSDLSuccess(T)(lazy T expr, string file = __FILE__, size_t line = __LINE__) if (isPointer!T || is(T == bool))
+{
+    auto result = expr;
+    if (!result)
+    {
+        throw SDLException.fromError(file, line);
+    }
+    return result;
+}
 
 /**
 Dランタイム開始関数の宣言
@@ -34,7 +93,11 @@ Returns:
 */
 extern(C) int dmanMain(char[][] args)
 {
-	writeln("Edit source/app.d to start your project.");
+    // SDL初期化
+    assumeSDLSuccess(SDL_Init(SDL_INIT_VIDEO));
+    scope(exit) SDL_Quit();
+
+    writeln("Hello, D iOS SDL World!");
 
     return 0;
 }
