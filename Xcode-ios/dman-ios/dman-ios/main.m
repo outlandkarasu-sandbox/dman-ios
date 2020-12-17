@@ -1,5 +1,5 @@
 // これが大事
-#include <SDL/SDL.h>
+#include <SDL.h>
 
 #include <Foundation/Foundation.h>
 #include <UIKit/UIKit.h>

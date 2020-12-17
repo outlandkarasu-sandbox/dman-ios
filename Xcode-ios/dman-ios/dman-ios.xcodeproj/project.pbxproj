@@ -11,7 +11,7 @@
 		A55EEF562586DF6300E4AA27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A55EEF552586DF6300E4AA27 /* main.m */; };
 		A56618C1258A2E7C00CB2C47 /* libBindBC_SDL-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A56618C0258A2E7C00CB2C47 /* libBindBC_SDL-ios.a */; };
 		A56618C8258A3AD400CB2C47 /* libSDL2_image-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A56618C7258A3AD400CB2C47 /* libSDL2_image-ios.a */; };
-		A5B30EB42588D96100D51D6D /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B30EB32588D96100D51D6D /* libSDL2.a */; };
+		A5845B3F258B9E7E00426C48 /* libSDL2-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5845B3E258B9E7E00426C48 /* libSDL2-ios.a */; };
 		A5B30EB62588DA2B00D51D6D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B30EB52588DA2B00D51D6D /* AudioToolbox.framework */; };
 		A5B30EB82588DA3600D51D6D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B30EB72588DA3600D51D6D /* AVFoundation.framework */; };
 		A5B30EBA2588DA4000D51D6D /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B30EB92588DA4000D51D6D /* CoreBluetooth.framework */; };
@@ -39,6 +39,7 @@
 		A55EEF552586DF6300E4AA27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A56618C0258A2E7C00CB2C47 /* libBindBC_SDL-ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libBindBC_SDL-ios.a"; path = "../Libraries/libBindBC_SDL-ios.a"; sourceTree = "<group>"; };
 		A56618C7258A3AD400CB2C47 /* libSDL2_image-ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSDL2_image-ios.a"; path = "../Libraries/libSDL2_image-ios.a"; sourceTree = "<group>"; };
+		A5845B3E258B9E7E00426C48 /* libSDL2-ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSDL2-ios.a"; path = "../Libraries/libSDL2-ios.a"; sourceTree = "<group>"; };
 		A5B30EB32588D96100D51D6D /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../Libraries/libSDL2.a; sourceTree = "<group>"; };
 		A5B30EB52588DA2B00D51D6D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A5B30EB72588DA3600D51D6D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -66,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5845B3F258B9E7E00426C48 /* libSDL2-ios.a in Frameworks */,
 				A56618C8258A3AD400CB2C47 /* libSDL2_image-ios.a in Frameworks */,
 				A56618C1258A2E7C00CB2C47 /* libBindBC_SDL-ios.a in Frameworks */,
 				A5B30EC02588DA5B00D51D6D /* CoreServices.framework in Frameworks */,
@@ -83,7 +85,6 @@
 				A5B30EBA2588DA4000D51D6D /* CoreBluetooth.framework in Frameworks */,
 				A5B30EB82588DA3600D51D6D /* AVFoundation.framework in Frameworks */,
 				A5B30EB62588DA2B00D51D6D /* AudioToolbox.framework in Frameworks */,
-				A5B30EB42588D96100D51D6D /* libSDL2.a in Frameworks */,
 				A5E6C6E125879A4200F3EDDD /* libphobos2-ldc.a in Frameworks */,
 				A5E6C6DF25879A3800F3EDDD /* libdruntime-ldc.a in Frameworks */,
 				A5E6C6DC258797C300F3EDDD /* libdman-ios-ios.a in Frameworks */,
@@ -123,6 +124,7 @@
 		A5E6C6DA258797C300F3EDDD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A5845B3E258B9E7E00426C48 /* libSDL2-ios.a */,
 				A56618C7258A3AD400CB2C47 /* libSDL2_image-ios.a */,
 				A56618C0258A2E7C00CB2C47 /* libBindBC_SDL-ios.a */,
 				A5B30ED52588DDC900D51D6D /* CoreImage.framework */,
@@ -343,7 +345,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = ../Includes;
+				HEADER_SEARCH_PATHS = ../SDL/include;
 				INFOPLIST_FILE = "dman-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -362,7 +364,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = ../Includes;
+				HEADER_SEARCH_PATHS = ../SDL/include;
 				INFOPLIST_FILE = "dman-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
