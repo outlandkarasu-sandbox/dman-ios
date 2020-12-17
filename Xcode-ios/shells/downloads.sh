@@ -3,7 +3,7 @@
 cd `dirname $0`
 source ./settings.sh
 
-cd ${XCODE_ROOT_DIR}
+cd ${XCODE_IOS_ROOT}
 
 # SDL2ダウンロード
 curl -L -O https://www.libsdl.org/release/SDL2-${SDL2_VERSION}.tar.gz
