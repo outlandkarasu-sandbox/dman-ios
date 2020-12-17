@@ -15,26 +15,15 @@ LDC_DIR=~/dlang/ldc-${LDC_VERSION}
 
 mkdir -p ./Xcode-ios/Libraries
 
-# ランタイムライブラリのUniversal Libraryを生成する
-xcrun -sdk iphoneos lipo -create \
-        ${LDC_DIR}/lib-ios-arm64/libdruntime-ldc.a \
-        ${LDC_DIR}/lib-ios-x86_64/libdruntime-ldc.a \
-	-output ${LIBRARY_DIR}/libdruntime-ldc.a
-xcrun -sdk iphoneos lipo -create \
-        ${LDC_DIR}/lib-ios-arm64/libphobos2-ldc.a \
-        ${LDC_DIR}/lib-ios-x86_64/libphobos2-ldc.a \
-	-output ${LIBRARY_DIR}/libphobos2-ldc.a
-
 # Arm向けにビルド
 dub build --arch=arm64-apple-ios
 mv ${LIBRARY_NAME} ${LIBRARY_DIR}/${LIBRARY_NAME_ARM64}
-
 
 # x86_64向け(iOS Simulator)にビルド
 dub build --arch=x86_64-apple-ios
 mv ${LIBRARY_NAME} ${LIBRARY_DIR}/${LIBRARY_NAME_X86_64}
 
-# Universal libraryにまとめる
+# Universal Libraryにまとめる
 xcrun -sdk iphoneos lipo -create \
 	${LIBRARY_DIR}/${LIBRARY_NAME_ARM64} \
 	${LIBRARY_DIR}/${LIBRARY_NAME_X86_64} \
