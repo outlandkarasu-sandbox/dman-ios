@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd `dirname $0`/../
+cd ..
 
 export XCODE_IOS_ROOT=`pwd`
 export LIB_DIR=${XCODE_IOS_ROOT}/Libraries
@@ -16,5 +16,9 @@ export SDL2_IMAGE_DIR=${XCODE_IOS_ROOT}/SDL2_image-${SDL2_IMAGE_VERSION}
 
 # bindbc-sdl設定
 export LDC_VERSION=1.24.0
+export LDC_DIR=~/dlang/ldc-${LDC_VERSION}
 export BINDBC_SDL_DIR=${XCODE_IOS_ROOT}/bindbc-sdl
+
+# dman設定
+export DMAN_DIR=${XCODE_IOS_ROOT}/..
 
